@@ -6,6 +6,7 @@
 | GITHUB_ACTIONS    | Pass ✅           |
 | GITLEAKS          | Pass ✅           |
 | JSCPD             | Pass ✅           |
+| JSON              | Pass ✅           |
 | MARKDOWN_PRETTIER | Pass ✅           |
 | NATURAL_LANGUAGE  | Pass ✅           |
 | PYTHON_BLACK      | Pass ✅           |
