@@ -31,3 +31,6 @@ jobs:
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          fix: true
+          output: lint-report.txt
