@@ -1,1 +1,1 @@
-[![Super-Linter](https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE_NAME>/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![Super-Linter](https://github.com/Raubmorder320/Python-project/actions/workflows/main.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
