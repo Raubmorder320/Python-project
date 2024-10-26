@@ -5,7 +5,8 @@ on: # yamllint disable-line rule:truthy
   push: null
   pull_request: null
 
-permissions: {}
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -13,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
+      contents: write
       packages: read
       # To report GitHub Actions status checks
       statuses: write
@@ -31,6 +32,5 @@ jobs:
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          fix: true
-          output: lint-report.txt
+          FIX_PYTHON_BLACK: true
+          FIX_CLANG_FORMAT: true
