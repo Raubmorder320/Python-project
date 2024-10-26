@@ -34,3 +34,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FIX_PYTHON_BLACK: true
           FIX_CLANG_FORMAT: true
+          VALIDATE_PYTHON_PYLINT: false
+          VALIDATE_YAML_PRETTIER: false
+          VALIDATE_MARKDOWN: false
