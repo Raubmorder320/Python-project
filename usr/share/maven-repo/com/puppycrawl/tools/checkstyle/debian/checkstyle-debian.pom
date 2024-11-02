@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.puppycrawl.tools</groupId>
+	<artifactId>checkstyle</artifactId>
+	<version>debian</version>
+	<packaging>jar</packaging>
+	<!-- This parent is requirements for deploy of artifacts to maven central -->
+	<name>checkstyle</name>
+	<description>Checkstyle is a development tool to help programmers write Java code
+    that adheres to a coding standard
+	</description>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<projectVersion>${project.version}</projectVersion>
+		<antlr4.version>4.8-1</antlr4.version>
+		<maven.site.plugin.version>3.9.1</maven.site.plugin.version>
+		<maven.spotbugs.plugin.version>4.0.4</maven.spotbugs.plugin.version>
+		<maven.pmd.plugin.version>3.13.0</maven.pmd.plugin.version>
+		<pmd.version>6.26.0</pmd.version>
+		<maven.jacoco.plugin.version>0.8.5</maven.jacoco.plugin.version>
+		<powermock.version>2.0.7</powermock.version>
+		<saxon.version>9.9.1-7</saxon.version>
+		<maven.checkstyle.plugin.version>3.1.1</maven.checkstyle.plugin.version>
+		<maven.sevntu.checkstyle.plugin.version>1.37.1</maven.sevntu.checkstyle.plugin.version>
+		<maven.sevntu-checkstyle-check.checkstyle.version>8.29</maven.sevntu-checkstyle-check.checkstyle.version>
+		<maven.versions.plugin.version>2.8.1</maven.versions.plugin.version>
+		<java.version>1.8</java.version>
+		<pitest.plugin.version>1.4.9</pitest.plugin.version>
+		<pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
+		<pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
+		<pitest.plugin.threads>4</pitest.plugin.threads>
+		<pitest.junit5.plugin.version>0.10</pitest.junit5.plugin.version>
+		<sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
+		<junit.version>5.6.2</junit.version>
+		
+			<debian.antlr.antlr.originalVersion>2.7.7</debian.antlr.antlr.originalVersion>
+		
+			<debian.com.github.stefanbirkner.system-rules.originalVersion>1.19.0</debian.com.github.stefanbirkner.system-rules.originalVersion>
+		
+			<debian.com.google.guava.guava.originalVersion>29.0-jre</debian.com.google.guava.guava.originalVersion>
+		
+			<debian.com.google.truth.truth.originalVersion>1.0.1</debian.com.google.truth.truth.originalVersion>
+		
+			<debian.com.tngtech.archunit.archunit-junit5.originalVersion>0.14.1</debian.com.tngtech.archunit.archunit-junit5.originalVersion>
+		
+			<debian.commons-beanutils.commons-beanutils.originalVersion>1.9.4</debian.commons-beanutils.commons-beanutils.originalVersion>
+		
+			<debian.commons-io.commons-io.originalVersion>2.8.0</debian.commons-io.commons-io.originalVersion>
+		
+			<debian.hasPackageVersion/>
+		
+			<debian.info.picocli.picocli.originalVersion>4.5.1</debian.info.picocli.picocli.originalVersion>
+		
+			<debian.net.sf.saxon.Saxon-HE.originalVersion>9.9.1-7</debian.net.sf.saxon.Saxon-HE.originalVersion>
+		
+			<debian.nl.jqno.equalsverifier.equalsverifier.originalVersion>3.4.2</debian.nl.jqno.equalsverifier.equalsverifier.originalVersion>
+		
+			<debian.org.antlr.antlr4-runtime.originalVersion>4.8-1</debian.org.antlr.antlr4-runtime.originalVersion>
+		
+			<debian.org.apache.ant.ant.originalVersion>1.10.8</debian.org.apache.ant.ant.originalVersion>
+		
+			<debian.org.eclipse.jgit.org.eclipse.jgit.originalVersion>5.8.1.202007141445-r</debian.org.eclipse.jgit.org.eclipse.jgit.originalVersion>
+		
+			<debian.org.itsallcode.junit5-system-extensions.originalVersion>1.1.0</debian.org.itsallcode.junit5-system-extensions.originalVersion>
+		
+			<debian.org.jacoco.org.jacoco.agent.originalVersion>0.8.5</debian.org.jacoco.org.jacoco.agent.originalVersion>
+		
+			<debian.org.junit-pioneer.junit-pioneer.originalVersion>0.9.0</debian.org.junit-pioneer.junit-pioneer.originalVersion>
+		
+			<debian.org.junit.jupiter.junit-jupiter-api.originalVersion>5.6.2</debian.org.junit.jupiter.junit-jupiter-api.originalVersion>
+		
+			<debian.org.junit.jupiter.junit-jupiter-engine.originalVersion>5.6.2</debian.org.junit.jupiter.junit-jupiter-engine.originalVersion>
+		
+			<debian.org.junit.vintage.junit-vintage-engine.originalVersion>5.6.2</debian.org.junit.vintage.junit-vintage-engine.originalVersion>
+		
+			<debian.org.powermock.powermock-api-mockito2.originalVersion>2.0.7</debian.org.powermock.powermock-api-mockito2.originalVersion>
+		
+			<debian.org.powermock.powermock-module-junit4.originalVersion>2.0.7</debian.org.powermock.powermock-module-junit4.originalVersion>
+		
+			<debian.org.reflections.reflections.originalVersion>0.9.12</debian.org.reflections.reflections.originalVersion>
+		
+			<debian.org.slf4j.slf4j-simple.originalVersion>1.7.30</debian.org.slf4j.slf4j-simple.originalVersion>
+		
+			<debian.originalVersion>8.36.1</debian.originalVersion>
+		
+			<debian.package>checkstyle</debian.package>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>info.picocli</groupId>
+			<artifactId>picocli</artifactId>
+			<version>debian</version>
+		</dependency>
+		<dependency>
+			<groupId>antlr</groupId>
+			<artifactId>antlr</artifactId>
+			<version>2.x</version>
+		</dependency>
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4-runtime</artifactId>
+			<version>debian</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>debian</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>debian</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant</artifactId>
+			<version>debian</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>debian</version>
+		</dependency>
+		<!-- test scope stuff -->
+		<!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
+		<!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
+		<!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
+		<dependency>
+			<groupId>net.sf.saxon</groupId>
+			<artifactId>Saxon-HE</artifactId>
+			<version>debian</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.ibm.icu</groupId>
+					<artifactId>icu4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+	<!-- that repositories are required for testing plugin's snapshot version -->
+</project>

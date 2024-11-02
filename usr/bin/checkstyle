@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Include the wrappers utility script
+. /media/olexander/c1735103-16d7-4edb-9d95-4d62bc328dd9/Python\ project/usr/lib
+
+/media/olexander/c1735103-16d7-4edb-9d95-4d62bc328dd9/Python\ project/usr/lib/java-wrappers/find_java_runtime
+
+find_jars antlr4-runtime commons-lang3 commons-beanutils commons-collections3 guava commons-cli commons-logging picocli Saxon-HE reflections checkstyle
+
+run_java com.puppycrawl.tools.checkstyle.Main "$@"
