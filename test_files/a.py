@@ -1,3 +1,3 @@
-for i in range(10):
-      print("hello world")
-print("aaaaaaa")
+def square(x):
+      return x**2
+
