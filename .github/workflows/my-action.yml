@@ -4,6 +4,7 @@ on: push
 
 jobs:
     printing:
+      name: Print hw
       runs-on: ubuntu-latest
       steps:
       - name: Printing hw
