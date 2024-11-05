@@ -1,11 +1,17 @@
 name: Test action
 
-on: push
+on: 
+    push:
+        branches: 
+            new
 
 jobs:
     printing:
       name: Print hw
       runs-on: ubuntu-latest
       steps:
-      - name: Printing hw
-        run: echo "hello world"
+        - uses: actions/checkout@v4
+        - name: print information about rep
+          run: ls -la
+        - name: print all is good
+          run: echo " all is good"
