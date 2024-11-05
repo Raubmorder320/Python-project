@@ -26,7 +26,7 @@ def index():
             print(0)
             lint = lint_file(filename)
             print(1)
-            result = { req:"requerments", lint: "linter"}
+            result = { req:"requerments", lint:"linter"}
             print(2)
             print(result)
             return render_template('index.html', text=result)

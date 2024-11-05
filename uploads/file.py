@@ -1,34 +1,38 @@
-import subprocess
-import sys
+from flask import Flask
+from flask import render_template
+from flask import request
+from requirments import Requirement
+from linter import lint_file
+import os
 
-def lint_file(file_path):
-    file_extension = file_path.split('.')[-1]
-    # Проверка расширения файла
-    if file_extension == 'py':
-        linter = 'flake8'
-    elif file_extension == 'cpp' or file_extension == 'c':
-        linter = 'cpplint'
-    elif file_extension == "java":
-        linter = "checkstyle"
-    else:
-        return f"Не поддерживается расширение файла {file_extension}"
-        
-    # Создание команды и запуск субпроцесса с соответствующим линтером
-    command = f"{linter} uploads/{file_path}"
-    result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-   
-    #print(result)
-    # Проверка на наличие ошибок в загруженном файле
-    if result.returncode == 0:
-        return f"Файл {file_path} прошел проверку без ошибок"
-    else:
-        return result.stdout.decode('utf-8')
-         
+app = Flask(__name__)
+UPLOAD_FOLDER = 'uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-if __name__ == '__main__':
-    if len(sys.argv)!= 2:
-        print("Необходимо указать путь к файлу")
-        sys.exit(1)
+app.config['UPLOAD_FOLDER'] =    UPLOAD_FOLDER
 
-    file_path = sys.argv[1]
-    print(lint_file(file_path))
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        # Получаем файл из запроса
+        file = request.files['file']
+        if file:
+            filename = file.filename
+            filename = "file" + filename[filename.find("."):]
+            # Сохраняем файл
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            print(app.config['UPLOAD_FOLDER']+"/"+filename)
+            req = Requirement.check(filename=app.config['UPLOAD_FOLDER']+"/"+filename, ban=["for"], demand=["if"])
+            print(0)
+            lint = lint_file(filename)
+            print(1)
+            result = { req:"requerments", lint:"linter"}
+            print(2)
+            print(result)
+            return render_template('index.html', text=result)
+
+    return render_template('index.html')
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
