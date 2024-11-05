@@ -3,6 +3,8 @@ name: Test action
 on: push
 
 jobs:
-    - name: Printing hw
+    printing:
       runs-on: ubuntu-latest
+      steps:
+      - name: Printing hw
         run: echo "hello world"
