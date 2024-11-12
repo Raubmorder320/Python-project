@@ -18,7 +18,7 @@ def lint_file(file_path):
     command = f"{linter} uploads/{file_path}"
     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
    
-    print(result)
+    
     # Проверка на наличие ошибок в загруженном файле
     if result.returncode == 0:
         return f"Файл {file_path} прошел проверку без ошибок"
@@ -32,4 +32,4 @@ if __name__ == '__main__':
         sys.exit(1)
 
     file_path = sys.argv[1]
-    print(lint_file(file_path))
+    
